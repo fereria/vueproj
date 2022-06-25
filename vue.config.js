@@ -3,6 +3,6 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: '/project-name/',
+  publicPath: './',
   outputDir: 'docs'
 })
