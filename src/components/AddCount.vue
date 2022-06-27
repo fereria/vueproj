@@ -7,7 +7,7 @@
 <script>
 export default {
 	name: "AddCount",
-	props: { itemValue: String }, // propsで親コンポから値を取得
+	props: ["itemValue"], // propsで親コンポから値を取得
 	data() {
 		return {
 			count: 0,
