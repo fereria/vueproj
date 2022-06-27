@@ -1,15 +1,13 @@
 <template>
 	<dev>
-		<dev>childComp -> {{ childComp }}</dev
-		><br /><br />
-		<dev><button @click="onClick">[Click!!]</button></dev>
+		<p><v-btn @click="onClick">Click!!</v-btn></p>
 	</dev>
 </template>
 
 <script>
 export default {
-	name: "HelloWorld",
-	props: { childComp: String }, // propsで親コンポから値を取得
+	name: "AddCount",
+	props: { itemValue: String }, // propsで親コンポから値を取得
 	data() {
 		return {
 			count: 0,
@@ -17,6 +15,7 @@ export default {
 	},
 	methods: {
 		onClick() {
+			// SubComponent の結果を送る
 			this.count = ++this.count;
 			this.$emit("add", this.count);
 		},

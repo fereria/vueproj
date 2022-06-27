@@ -1,42 +1,43 @@
 <template>
 	<div>
-		<div v-for="(item, index) in items" :key="index">
-			<input
-				type="radio"
-				name="sample1"
-				:value="item"
-				v-model="itemValue"
-				@change="sampleB"
-			/>
-			{{ item }}
-		</div>
-		<hello-world :childComp="itemValue" @add="add1" />
+		<add-count @add="addCount" />
 		{{ count }}
+		<check-box :selected="itemValue" :items="items" @changed="onChanged" />
+		{{ showValue }}
 	</div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// 自作コンポーネントを読み込み
+import AddCount from "./components/Count.vue";
+import CheckBox from "./components/CheckBox.vue";
 
 export default {
-	components: { HelloWorld },
+	components: { AddCount, CheckBox },
 	data() {
 		return {
-			itemValue: "りんご",
 			count: 0,
-			items: ["ぶどう", "りんご", "みかん"],
+			itemValue: "",
+			items: ["ばなな", "りんご", "ぶどう"],
 		};
 	},
 	computed: {
-		sample() {
+		showValue() {
 			return "選択中: " + this.itemValue;
 		},
 	},
-	filters: {},
+	mounted: function () {
+		// デフォルトの選択肢を設定
+		this.itemValue = "ばなな";
+	},
 	methods: {
-		sampleB() {},
-		add1(count) {
+		addCount(count) {
+			// SubComponentの結果を受け取り、自身のdataにセットする
 			this.count = count;
+		},
+		onChanged(value) {
+			// SubComponentのCheckBoxの選択中を親コンポーネントに反映
+			this.itemValue = value;
 		},
 	},
 };
