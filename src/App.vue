@@ -1,5 +1,6 @@
 <template>
 	<div>
+		sample
 		<add-count @add="addCount" />
 		{{ count }}
 		<!-- itemsの配列のCheckBoxを作り、selectedItemを更新する -->
